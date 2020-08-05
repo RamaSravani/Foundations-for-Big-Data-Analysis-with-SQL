@@ -1,0 +1,87 @@
+Database Overview
+
+Ramasravani
+04-27-2020
+===
+
+Database:   Fun
+===
+Notes:
+1. All the column and table descriptions are not authoritative. They are just my estimates of what I actually seen on while examining these tables not from the data source description.
+2. PK, FK and references are the descriptions that are assumed data relationships, not database constraints.
+===
+
+Tables:
+ card_rank 	Details of the card game which includes rank and values.	
+ card_suit 	Details of the card game which includes suit and color.	
+ games 		Game Information
+ inventory	Game inventory by each shop
+===
+
+Table : card_rank
+
+Columns (2)
+  	  	Name 		Type 		Comment
+1 		rank 		string 		PK
+2 		value 		tinyint 	card value rank
+
+Sample
+  		rank 		value
+1 		Ace 		NULL
+2 		2 		2
+3 		3 		3
+===
+
+Table:  card_suit
+
+Columns (2)
+  	  	Name 		Type 		Comment
+1 		suit 		string 		Pk
+2 		color 		string 		Defines the color of the suit
+
+Sample
+  		suit 	 	color
+1 		Clubs 		Black
+2 		Diamonds 	Red
+3 		Hearts 	 	Red
+===
+
+Table:  games
+
+ Columns (8)
+  	  	Name 		Type 		Comment
+1 		id 		int 		PK, game id
+2 		name 		string 		name of the game
+3 		inventor 	string 		two-letter inventor names
+4 		year 		string 		game year
+5 		min_age 	tinyint 	minimum age to participate in the game
+6		min_players 	tinyint 	minimum no.of players to participated in the game
+7 		max_players 	tinyint 	maximum no.of players to participate in the game
+8 		list_price 	decimal(5,2) 	games list_price, unknown price (US dollar or any other currency?)
+
+Sample
+  		id 		name 		inventor 		year 		min_age 	min_players 	max_players 	list_price
+1 		1 		Monopoly 	Elizabeth Magie 	1903 		8 		2 		6 		19.99
+2 		2 		Scrabble 	Alfred Mosher Butts 	1938 		8 		2 		4 		17.99
+3 		3 		Clue 		Anthony E. Pratt 	1944 		8 		2 		6 		9.99
+===
+
+
+Table:  inventory
+
+ Columns (5)
+  	  	Name 		Type 		Comment
+1 		shop 		string 		two-letter shop name
+2 		game 		string 		FK, references games.name
+3 		qty 		int 		quantities available in the shop for each game
+4 		aisle 		tinyint 	
+5 		price 		decimal(5,2) 	inventory price, unknown price (US dollar or any other currency?)
+
+
+Sample
+  	shop 		game 		qty 		aisle 		price
+1 	Dicey 		Monopoly 	7 		3 		17.99
+2 	Dicey 		Clue 		3 		NULL 		9.99
+3 	Board 'Em 	Monopoly 	11 		2 		25.00
+===
+===
